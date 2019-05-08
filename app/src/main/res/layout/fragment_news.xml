@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".ui.NewsFragment">
+
+    <data>
+        <variable
+                name="vm"
+                type="com.sample.android.news.viewmodels.NewsViewModel"/>
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ProgressBar
+                android:id="@+id/loading_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:goneIfNotNull="@{vm.news}"
+                android:layout_gravity="center"/>
+
+        <com.sample.android.news.widget.AutofitRecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:columnWidth="180dp"
+                android:padding="@dimen/spacing_small"
+                tools:listitem="@layout/news_item"/>
+    </FrameLayout>
+</layout>
