@@ -13,7 +13,6 @@ import com.sample.android.news.domain.Article
 import com.sample.android.news.viewmodels.NewsViewModel
 import com.sample.android.news.widget.MarginDecoration
 
-
 class NewsFragment : Fragment() {
 
     /**
@@ -44,7 +43,7 @@ class NewsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel.news.observe(viewLifecycleOwner, Observer<List<Article>> { articles ->
             articles?.apply {
-                viewModelAdapter?.news = articles
+                viewModelAdapter?.submitList(articles)
             }
         })
     }

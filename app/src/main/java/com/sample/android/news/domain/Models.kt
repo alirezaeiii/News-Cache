@@ -1,6 +1,6 @@
 package com.sample.android.news.domain
 
-class Article(
+data class Article(
     val source: Source,
     val author: String?,
     val title: String,
@@ -10,7 +10,7 @@ class Article(
     val content: String?
 )
 
-class Source(
+data class Source(
     val id: String?,
     val name: String
 )
