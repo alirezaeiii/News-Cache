@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import com.github.florent37.picassopalette.PicassoPalette
 import com.sample.android.news.R
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 
 /**
@@ -23,7 +24,7 @@ fun goneIfNotNull(view: View, it: Any?) {
 fun bindImage(cardView: CardView, url: String) {
 
     val imageView: ImageView = cardView.findViewById(R.id.article_poster)
-    Picasso.with(cardView.context).load(url).into(
+    Picasso.with(cardView.context).load(url).networkPolicy(NetworkPolicy.OFFLINE).into(
         imageView,
         PicassoPalette.with(url, imageView)
             .use(PicassoPalette.Profile.VIBRANT)

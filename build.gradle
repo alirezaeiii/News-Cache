@@ -23,7 +23,7 @@ buildscript {
         version_coroutines_adapter = '0.9.2'
         version_okhttp = '3.12.0'
         version_moshi = '1.8.0'
-        version_work = '1.0.0-beta02'
+        version_work = '1.0.0-alpha11'
         version_timber = '4.7.1'
         version_lifecycle_extensions = '2.0.0'
         version_room = '2.1.0-alpha03'
