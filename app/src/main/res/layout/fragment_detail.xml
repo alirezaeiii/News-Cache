@@ -63,11 +63,19 @@
                         style="@style/ArticleMargin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="@dimen/spacing_normal"
                         android:textColor="@color/text_black"
                         android:textStyle="bold"
                         android:transitionName="@string/transition_title"
                         android:text="@{article.title}"/>
+
+                <TextView
+                        style="@style/ArticleMargin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_micro"
+                        android:textColor="@color/text_light"
+                        app:descriptive_date="@{article.publishedAt}"/>
 
                 <TextView
                         style="@style/ArticleMargin.Title"

@@ -1,8 +1,10 @@
 package com.sample.android.news.util
 
+import android.text.format.DateUtils
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.github.florent37.picassopalette.PicassoPalette
 import com.sample.android.news.R
@@ -38,4 +40,16 @@ fun bindImage(layout: FrameLayout, url: String?) {
 @BindingAdapter("imageUrl")
 fun bindImage(imageView: ImageView, url: String?) {
     Picasso.with(imageView.context).load(url).into(imageView)
+}
+
+@BindingAdapter("descriptive_date")
+fun setDescriptiveDate(view: TextView, timestamp: Long) {
+    val now = System.currentTimeMillis()
+    val relativeDate = DateUtils.getRelativeTimeSpanString(
+        timestamp,
+        now,
+        DateUtils.SECOND_IN_MILLIS,
+        DateUtils.FORMAT_ABBREV_RELATIVE
+    )
+    view.text = relativeDate
 }

@@ -12,7 +12,7 @@ data class Article(
     val description: String?,
     val url: String,
     val imageUrl: String?,
-    val publishedAt: String,
+    val publishedAt: Long,
     val content: String?
 ) : Parcelable {
     /**

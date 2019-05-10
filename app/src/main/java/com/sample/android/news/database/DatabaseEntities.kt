@@ -16,7 +16,7 @@ class DatabaseArticle(
     val title: String,
     val description: String?,
     val imageUrl: String?,
-    val publishedAt: String,
+    val publishedAt: Long,
     val content: String?
 )
 

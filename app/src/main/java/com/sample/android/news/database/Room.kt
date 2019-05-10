@@ -6,7 +6,7 @@ import androidx.room.*
 
 @Dao
 interface NewsDao {
-    @Query("select * from databasearticle")
+    @Query("SELECT * FROM databasearticle ORDER BY publishedAt DESC")
     fun getArticles(): LiveData<List<DatabaseArticle>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -26,7 +26,7 @@ fun getDatabase(context: Context): NewsDatabase {
             INSTANCE = Room.databaseBuilder(
                 context.applicationContext,
                 NewsDatabase::class.java,
-                "videos"
+                "articles"
             ).build()
         }
     }

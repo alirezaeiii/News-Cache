@@ -2,6 +2,7 @@ package com.sample.android.news.network
 
 import com.sample.android.news.database.DatabaseArticle
 import com.sample.android.news.database.DatabaseSource
+import com.sample.android.news.util.DateTimeParser
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -29,6 +30,8 @@ class NetworkSource(
     val name: String
 )
 
+private val dateTimeParser = DateTimeParser
+
 fun NetworkArticleContainer.asDatabaseModel(): Array<DatabaseArticle> {
     return articles.map {
         DatabaseArticle(
@@ -41,7 +44,7 @@ fun NetworkArticleContainer.asDatabaseModel(): Array<DatabaseArticle> {
             title = it.title,
             description = it.description,
             imageUrl = it.imageUrl,
-            publishedAt = it.publishedAt,
+            publishedAt = dateTimeParser.toMillis(it.publishedAt),
             content = it.content
         )
     }.toTypedArray()
