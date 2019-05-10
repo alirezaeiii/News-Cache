@@ -5,6 +5,9 @@
         tools:context=".ui.DetailFragment">
 
     <data>
+
+        <import type="android.view.View"/>
+
         <variable
                 name="article"
                 type="com.sample.android.news.domain.Article"/>
@@ -81,7 +84,22 @@
                         style="@style/ArticleMargin.Title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/description"/>
+                        android:text="@string/author"
+                        android:visibility="@{article.author!=null ? View.VISIBLE: View.GONE}"/>
+
+                <TextView
+                        style="@style/ArticleMargin.Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:transitionName="@string/transition_description"
+                        android:text="@{article.author}"/>
+
+                <TextView
+                        style="@style/ArticleMargin.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/description"
+                        android:visibility="@{article.description!=null ? View.VISIBLE: View.GONE}"/>
 
                 <TextView
                         style="@style/ArticleMargin.Body"
@@ -92,9 +110,10 @@
 
                 <TextView
                         style="@style/ArticleMargin.Title"
+                        android:id="@+id/content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/content"/>
+                        android:visibility="@{article.content!=null ? View.VISIBLE: View.GONE}"/>
 
                 <TextView
                         style="@style/ArticleMargin.Body"
