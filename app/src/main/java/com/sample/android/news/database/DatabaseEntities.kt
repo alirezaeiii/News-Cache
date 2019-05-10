@@ -14,7 +14,8 @@ class DatabaseArticle(
     val source: DatabaseSource,
     val author: String?,
     val title: String,
-    val imageUrl: String,
+    val description: String?,
+    val imageUrl: String?,
     val publishedAt: String,
     val content: String?
 )
@@ -34,6 +35,7 @@ fun List<DatabaseArticle>.asDomainModel(): List<Article> {
             ),
             author = it.author,
             title = it.title,
+            description = it.description,
             imageUrl = it.imageUrl,
             publishedAt = it.publishedAt,
             content = it.content

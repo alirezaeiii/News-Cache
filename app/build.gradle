@@ -35,6 +35,7 @@ dependencies {
     // Support libraries
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version_kotlin"
     implementation "androidx.appcompat:appcompat:$version_support"
+    implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
     implementation "com.google.android.material:material:$version_material"
     implementation "androidx.palette:palette:$version_palette"
     implementation "androidx.test.espresso:espresso-idling-resource:$version_espresso"

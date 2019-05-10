@@ -21,12 +21,11 @@
                 app:goneIfNotNull="@{vm.news}"
                 android:layout_gravity="center"/>
 
-        <com.sample.android.news.widget.AutofitRecyclerView
+        <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:columnWidth="180dp"
-                android:padding="@dimen/spacing_small"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/news_item"/>
     </FrameLayout>
 </layout>

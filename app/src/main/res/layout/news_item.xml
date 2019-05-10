@@ -10,36 +10,114 @@
 
     <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="0dp"
             app:cardElevation="5dp"
-            app:imageUrl="@{article.imageUrl}">
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp">
 
-        <ImageView
-                android:id="@+id/article_poster"
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                tools:ignore="contentDescription"/>
+                android:layout_height="wrap_content">
 
-        <View
-                android:id="@+id/article_background"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_gravity="bottom"
-                android:alpha="0.8"
-                android:gravity="center"/>
+            <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/left_well"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="8dp"/>
 
-        <TextView
-                android:id="@+id/article_name"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_gravity="bottom"
-                android:gravity="center"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:textSize="18sp"
-                android:text="@{article.source.name}"/>
+            <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/right_well"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="8dp"/>
+
+            <TextView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@{article.title}"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_black"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/right_well"
+                    app:layout_constraintStart_toEndOf="@+id/left_well"
+                    app:layout_constraintTop_toBottomOf="@+id/video_thumbnail"
+                    tools:text="Article title"/>
+
+
+            <TextView
+                    android:id="@+id/description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@{article.shortDescription}"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_light"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/right_well"
+                    app:layout_constraintStart_toStartOf="@+id/left_well"
+                    app:layout_constraintTop_toBottomOf="@+id/title"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:text="this is an article @android:string/fingerprint_icon_content_description"/>
+
+            <FrameLayout
+                    android:id="@+id/video_thumbnail"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:imageUrl="@{article.imageUrl}"
+                    app:layout_constraintDimensionRatio="h,4:3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                        android:id="@+id/article_poster"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        tools:ignore="contentDescription"/>
+
+                <View
+                        android:id="@+id/article_background"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_gravity="bottom"
+                        android:alpha="0.8"
+                        android:gravity="center"/>
+
+                <TextView
+                        android:id="@+id/article_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_gravity="bottom"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:textSize="18sp"
+                        android:text="@{article.source.name}"/>
+
+            </FrameLayout>
+
+            <View
+                    android:id="@+id/clickableOverlay"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="?attr/selectableItemBackground"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 

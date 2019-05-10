@@ -7,7 +7,6 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 class NetworkArticleContainer(
-    @Json(name = "articles")
     val articles: List<NetworkArticle>
 )
 
@@ -16,9 +15,10 @@ class NetworkArticle(
     val source: NetworkSource,
     val author: String?,
     val title: String,
+    val description: String?,
     val url: String,
     @Json(name = "urlToImage")
-    val imageUrl: String,
+    val imageUrl: String?,
     val publishedAt: String,
     val content: String?
 )
@@ -39,6 +39,7 @@ fun NetworkArticleContainer.asDatabaseModel(): Array<DatabaseArticle> {
             ),
             author = it.author,
             title = it.title,
+            description = it.description,
             imageUrl = it.imageUrl,
             publishedAt = it.publishedAt,
             content = it.content

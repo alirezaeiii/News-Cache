@@ -11,7 +11,6 @@ import com.sample.android.news.BR
 import com.sample.android.news.databinding.FragmentNewsBinding
 import com.sample.android.news.domain.Article
 import com.sample.android.news.viewmodels.NewsViewModel
-import com.sample.android.news.widget.MarginDecoration
 
 class NewsFragment : Fragment() {
 
@@ -60,7 +59,6 @@ class NewsFragment : Fragment() {
 
         with(binding) {
             recyclerView.apply {
-                addItemDecoration(MarginDecoration(context))
                 setHasFixedSize(true)
                 adapter = viewModelAdapter
             }
