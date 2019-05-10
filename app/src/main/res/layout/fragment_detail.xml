@@ -92,7 +92,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:transitionName="@string/transition_description"
-                        android:text="@{article.author}"/>
+                        android:text="@{article.author}"
+                        android:visibility="@{article.author!=null ? View.VISIBLE: View.GONE}"/>
 
                 <TextView
                         style="@style/ArticleMargin.Title"
@@ -106,7 +107,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:transitionName="@string/transition_description"
-                        android:text="@{article.description}"/>
+                        android:text="@{article.description}"
+                        android:visibility="@{article.description!=null ? View.VISIBLE: View.GONE}"/>
 
                 <TextView
                         style="@style/ArticleMargin.Title"
@@ -119,7 +121,8 @@
                         style="@style/ArticleMargin.Body"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{article.content}"/>
+                        android:text="@{article.content}"
+                        android:visibility="@{article.content!=null ? View.VISIBLE: View.GONE}"/>
 
             </LinearLayout>
 
