@@ -1,6 +1,8 @@
 package com.sample.android.news.ui
 
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +36,9 @@ class NewsAdapter(val callback: OnClickListener) : ListAdapter<Article, NewsAdap
         fun bind(news: Article, newsCallback: OnClickListener) {
             with(binding) {
                 article = news
+                poster = articlePoster
+                title = articleTitle
+                description = articleDescription
                 callback = newsCallback
                 executePendingBindings()
             }
@@ -70,7 +75,8 @@ class NewsAdapter(val callback: OnClickListener) : ListAdapter<Article, NewsAdap
      * associated with the current item to the [onClick] function.
      * @param clickListener lambda that will be called with the current [Article]
      */
-    class OnClickListener(val clickListener: (article: Article) -> Unit) {
-        fun onClick(article: Article) = clickListener(article)
+    class OnClickListener(val clickListener: (article: Article, imageView: ImageView, titleTextView: TextView, descriptionTextView: TextView) -> Unit) {
+        fun onClick(article: Article, imageView: ImageView, titleTextView: TextView, descriptionTextView: TextView) =
+            clickListener(article, imageView, titleTextView, descriptionTextView)
     }
 }

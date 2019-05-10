@@ -2,4 +2,7 @@
     <string name="app_name">News</string>
     <string name="description">Description</string>
     <string name="content">Content</string>
+    <string name="transition_image">detail:header:image</string>
+    <string name="transition_title">detail:header:title</string>
+    <string name="transition_description">detail:header:description</string>
 </resources>

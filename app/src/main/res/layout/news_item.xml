@@ -10,6 +10,18 @@
         <variable
                 name="callback"
                 type="com.sample.android.news.ui.NewsAdapter.OnClickListener" />
+
+        <variable
+                name="poster"
+                type="android.widget.ImageView" />
+
+        <variable
+                name="title"
+                type="android.widget.TextView" />
+
+        <variable
+                name="description"
+                type="android.widget.TextView" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -40,7 +52,7 @@
                     app:layout_constraintGuide_end="8dp"/>
 
             <TextView
-                    android:id="@+id/title"
+                    android:id="@+id/article_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
@@ -50,6 +62,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/text_black"
                     android:textStyle="bold"
+                    android:transitionName="@string/transition_title"
                     app:layout_constraintEnd_toStartOf="@+id/right_well"
                     app:layout_constraintStart_toEndOf="@+id/left_well"
                     app:layout_constraintTop_toBottomOf="@+id/video_thumbnail"
@@ -57,7 +70,7 @@
 
 
             <TextView
-                    android:id="@+id/description"
+                    android:id="@+id/article_description"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -67,9 +80,10 @@
                     android:textAllCaps="false"
                     android:textColor="@color/text_light"
                     android:textSize="14sp"
+                    android:transitionName="@string/transition_description"
                     app:layout_constraintEnd_toEndOf="@+id/right_well"
                     app:layout_constraintStart_toStartOf="@+id/left_well"
-                    app:layout_constraintTop_toBottomOf="@+id/title"
+                    app:layout_constraintTop_toBottomOf="@+id/article_title"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:text="this is an article @android:string/fingerprint_icon_content_description"/>
 
@@ -88,6 +102,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
+                        android:transitionName="@string/transition_image"
                         tools:ignore="contentDescription"/>
 
                 <View
@@ -116,7 +131,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="?attr/selectableItemBackground"
-                    android:onClick="@{() -> callback.onClick(article)}"
+                    android:onClick="@{() -> callback.onClick(article, poster, title, description)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

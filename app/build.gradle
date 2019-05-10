@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
-apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 androidExtensions {
     experimental = true
@@ -50,8 +50,7 @@ dependencies {
     implementation "androidx.core:core-ktx:$version_core"
 
     // Navigation
-    implementation "android.arch.navigation:navigation-fragment-ktx:$version_navigation"
-    implementation "android.arch.navigation:navigation-ui-ktx:$version_navigation"
+    implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation"
 
     // Architecture components
     implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.sample.android.news.BR
 import com.sample.android.news.R
@@ -60,10 +61,16 @@ class NewsFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
         }
 
-        viewModelAdapter = NewsAdapter(NewsAdapter.OnClickListener { article ->
-            findNavController().navigate(NewsFragmentDirections.actionNewsFragmentToDetailFragment(article))
+        viewModelAdapter =
+            NewsAdapter(NewsAdapter.OnClickListener { article, imageView, titleTextView, descriptionTextView ->
+                val extras = FragmentNavigatorExtras(
+                    imageView to getString(R.string.transition_image),
+                    titleTextView to getString(R.string.transition_title),
+                    descriptionTextView to getString(R.string.transition_description)
+                )
+                findNavController().navigate(NewsFragmentDirections.actionNewsFragmentToDetailFragment(article), extras)
 
-        })
+            })
 
         with(binding) {
             recyclerView.apply {
