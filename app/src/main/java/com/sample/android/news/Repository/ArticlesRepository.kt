@@ -9,8 +9,10 @@ import com.sample.android.news.network.Network
 import com.sample.android.news.network.asDatabaseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
+import java.io.IOException
 
-class ArticlesRepository(private val database : NewsDatabase) {
+class ArticlesRepository(private val database: NewsDatabase) {
 
     /**
      * A list of articles that can be shown on the screen.
@@ -31,9 +33,12 @@ class ArticlesRepository(private val database : NewsDatabase) {
      */
     suspend fun refreshArticles() {
         withContext(Dispatchers.IO) {
-            val news = Network.news.getNews().await()
-            database.newsDao.insertAll(*news.asDatabaseModel())
+            try {
+                val news = Network.news.getNews().await()
+                database.newsDao.insertAll(*news.asDatabaseModel())
+            } catch (exception: IOException) {
+                Timber.e(exception)
+            }
         }
     }
-
 }
