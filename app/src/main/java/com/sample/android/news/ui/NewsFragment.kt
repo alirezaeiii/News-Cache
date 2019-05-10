@@ -4,13 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.sample.android.news.BR
+import com.sample.android.news.R
 import com.sample.android.news.databinding.FragmentNewsBinding
 import com.sample.android.news.domain.Article
+import com.sample.android.news.util.setupActionBar
 import com.sample.android.news.viewmodels.NewsViewModel
 
 
@@ -66,6 +69,10 @@ class NewsFragment : Fragment() {
             recyclerView.apply {
                 setHasFixedSize(true)
                 adapter = viewModelAdapter
+            }
+
+            (activity as AppCompatActivity).setupActionBar(toolbar) {
+                setTitle(R.string.app_name)
             }
         }
 

@@ -4,7 +4,7 @@ buildscript {
 
     ext {
         //Android
-        minSdkVersion = 19
+        minSdkVersion = 21
         targetSdkVersion = 28
         compileSdkVersion = 28
 

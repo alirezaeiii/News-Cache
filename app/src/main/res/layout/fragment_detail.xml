@@ -41,7 +41,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
                         app:layout_collapseMode="pin"
-                        app:theme="@style/AppTheme.PopupOverlay"/>
+                        app:theme="@style/AppTheme.PopupOverlay"
+                        app:navigationIcon="@drawable/ic_arrow_back_padded"/>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
