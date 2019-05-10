@@ -18,7 +18,7 @@ import timber.log.Timber
  * A retrofit service to fetch a news list.
  */
 interface NewsService {
-    @GET("v2/top-headlines?country=us&category=business")
+    @GET("v2/top-headlines?sources=techcrunch")
     fun getNews(): Deferred<NetworkArticleContainer>
 }
 

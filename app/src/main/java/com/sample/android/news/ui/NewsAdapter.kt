@@ -8,7 +8,7 @@ import com.sample.android.news.databinding.NewsItemBinding
 import com.sample.android.news.domain.Article
 import com.sample.android.news.util.layoutInflater
 
-class NewsAdapter : ListAdapter<Article, NewsAdapter.NewsViewHolder>(DiffCallback) {
+class NewsAdapter(val callback: OnClickListener) : ListAdapter<Article, NewsAdapter.NewsViewHolder>(DiffCallback) {
 
     /**
      * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
@@ -22,7 +22,7 @@ class NewsAdapter : ListAdapter<Article, NewsAdapter.NewsViewHolder>(DiffCallbac
      * position.
      */
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), callback)
     }
 
     /**
@@ -31,9 +31,10 @@ class NewsAdapter : ListAdapter<Article, NewsAdapter.NewsViewHolder>(DiffCallbac
     class NewsViewHolder(val binding: NewsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(news: Article) {
+        fun bind(news: Article, newsCallback: OnClickListener) {
             with(binding) {
                 article = news
+                callback = newsCallback
                 executePendingBindings()
             }
         }
@@ -62,5 +63,14 @@ class NewsAdapter : ListAdapter<Article, NewsAdapter.NewsViewHolder>(DiffCallbac
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem.url == newItem.url
         }
+    }
+
+    /**
+     * Custom listener that handles clicks on [RecyclerView] items.  Passes the [Article]
+     * associated with the current item to the [onClick] function.
+     * @param clickListener lambda that will be called with the current [Article]
+     */
+    class OnClickListener(val clickListener: (article: Article) -> Unit) {
+        fun onClick(article: Article) = clickListener(article)
     }
 }

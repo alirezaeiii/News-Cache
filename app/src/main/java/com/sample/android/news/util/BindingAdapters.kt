@@ -31,3 +31,11 @@ fun bindImage(layout: FrameLayout, url: String?) {
             .intoTextColor(layout.findViewById(R.id.article_name), PicassoPalette.Swatch.BODY_TEXT_COLOR)
     )
 }
+
+/**
+ * Binding adapter used to display image from URL using Picasso
+ */
+@BindingAdapter("imageUrl")
+fun bindImage(imageView: ImageView, url: String?) {
+    Picasso.with(imageView.context).load(url).into(imageView)
+}

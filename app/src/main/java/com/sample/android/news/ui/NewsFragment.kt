@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.sample.android.news.BR
 import com.sample.android.news.databinding.FragmentNewsBinding
 import com.sample.android.news.domain.Article
 import com.sample.android.news.viewmodels.NewsViewModel
+
 
 class NewsFragment : Fragment() {
 
@@ -30,7 +32,7 @@ class NewsFragment : Fragment() {
     /**
      * RecyclerView Adapter for converting a list of Articles to cards.
      */
-    private var viewModelAdapter: NewsAdapter? = null
+    private lateinit var viewModelAdapter: NewsAdapter
 
     /**
      * Called when the fragment's activity has been created and this
@@ -42,7 +44,7 @@ class NewsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel.news.observe(viewLifecycleOwner, Observer<List<Article>> { articles ->
             articles?.apply {
-                viewModelAdapter?.submitList(articles)
+                viewModelAdapter.submitList(articles)
             }
         })
     }
@@ -55,7 +57,10 @@ class NewsFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
         }
 
-        viewModelAdapter = NewsAdapter()
+        viewModelAdapter = NewsAdapter(NewsAdapter.OnClickListener { article ->
+            findNavController().navigate(NewsFragmentDirections.actionNewsFragmentToDetailFragment(article))
+
+        })
 
         with(binding) {
             recyclerView.apply {

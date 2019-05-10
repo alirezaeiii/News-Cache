@@ -6,6 +6,10 @@
         <variable
                 name="article"
                 type="com.sample.android.news.domain.Article"/>
+
+        <variable
+                name="callback"
+                type="com.sample.android.news.ui.NewsAdapter.OnClickListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -112,6 +116,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="?attr/selectableItemBackground"
+                    android:onClick="@{() -> callback.onClick(article)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
