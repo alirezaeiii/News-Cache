@@ -40,7 +40,7 @@ class DetailFragment : Fragment() {
             }
         }
 
-        // Animation Watchdog - Make sure we don't wait longer than a second for the Glide image
+        // Make sure we don't wait longer than a second for the Picasso image
         handler.postDelayed(1000) {
             startPostponedEnterTransition()
         }
