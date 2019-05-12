@@ -3,10 +3,13 @@ package com.sample.android.news.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.postDelayed
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
@@ -15,6 +18,8 @@ import com.sample.android.news.databinding.FragmentDetailBinding
 import com.sample.android.news.util.fromHtml
 
 class DetailFragment : Fragment() {
+
+    private var handler = Handler(Looper.getMainLooper())
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val args = DetailFragmentArgs.fromBundle(arguments!!)
@@ -34,6 +39,12 @@ class DetailFragment : Fragment() {
                 startActivity(intent)
             }
         }
+
+        // Animation Watchdog - Make sure we don't wait longer than a second for the Glide image
+        handler.postDelayed(1000) {
+            startPostponedEnterTransition()
+        }
+        postponeEnterTransition()
 
         return binding.root
     }

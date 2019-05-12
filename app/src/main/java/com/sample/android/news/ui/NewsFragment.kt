@@ -62,11 +62,11 @@ class NewsFragment : Fragment() {
         }
 
         viewModelAdapter =
-            NewsAdapter(NewsAdapter.OnClickListener { article, imageView, titleTextView, descriptionTextView ->
+            NewsAdapter(NewsAdapter.OnClickListener { article, imageView, titleTextView , descriptionTextView ->
                 val extras = FragmentNavigatorExtras(
-                    imageView to getString(R.string.transition_image),
-                    titleTextView to getString(R.string.transition_title),
-                    descriptionTextView to getString(R.string.transition_description)
+                    imageView to article.url,
+                    titleTextView to article.title,
+                    descriptionTextView to getString(R.string.transition_description, article.url)
                 )
                 findNavController().navigate(NewsFragmentDirections.actionNewsFragmentToDetailFragment(article), extras)
 
@@ -76,6 +76,12 @@ class NewsFragment : Fragment() {
             recyclerView.apply {
                 setHasFixedSize(true)
                 adapter = viewModelAdapter
+                postponeEnterTransition()
+                viewTreeObserver
+                    .addOnPreDrawListener {
+                        startPostponedEnterTransition()
+                        true
+                    }
             }
 
             (activity as AppCompatActivity).setupActionBar(toolbar) {

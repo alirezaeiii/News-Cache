@@ -75,8 +75,8 @@ class NewsAdapter(val callback: OnClickListener) : ListAdapter<Article, NewsAdap
      * associated with the current item to the [onClick] function.
      * @param clickListener lambda that will be called with the current [Article]
      */
-    class OnClickListener(val clickListener: (article: Article, imageView: ImageView, titleTextView: TextView, descriptionTextView: TextView) -> Unit) {
-        fun onClick(article: Article, imageView: ImageView, titleTextView: TextView, descriptionTextView: TextView) =
+    class OnClickListener(val clickListener: (article: Article, imageView: ImageView, titleTextView: TextView, descriptionTextView : TextView) -> Unit) {
+        fun onClick(article: Article, imageView: ImageView, titleTextView: TextView, descriptionTextView : TextView) =
             clickListener(article, imageView, titleTextView, descriptionTextView)
     }
 }

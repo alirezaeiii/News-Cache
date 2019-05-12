@@ -9,19 +9,19 @@
 
         <variable
                 name="callback"
-                type="com.sample.android.news.ui.NewsAdapter.OnClickListener" />
+                type="com.sample.android.news.ui.NewsAdapter.OnClickListener"/>
 
         <variable
                 name="poster"
-                type="android.widget.ImageView" />
+                type="android.widget.ImageView"/>
 
         <variable
                 name="title"
-                type="android.widget.TextView" />
+                type="android.widget.TextView"/>
 
         <variable
                 name="description"
-                type="android.widget.TextView" />
+                type="android.widget.TextView"/>
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -62,7 +62,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/text_black"
                     android:textStyle="bold"
-                    android:transitionName="@string/transition_title"
+                    app:transitionName="@{article.title}"
                     app:layout_constraintEnd_toStartOf="@+id/right_well"
                     app:layout_constraintStart_toEndOf="@+id/left_well"
                     app:layout_constraintTop_toBottomOf="@+id/video_thumbnail"
@@ -80,7 +80,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/text_light"
                     android:textSize="14sp"
-                    android:transitionName="@string/transition_description"
+                    app:transitionName= "@{@string/transition_description(article.url)}"
                     app:layout_constraintEnd_toEndOf="@+id/right_well"
                     app:layout_constraintStart_toStartOf="@+id/left_well"
                     app:layout_constraintTop_toBottomOf="@+id/article_title"
@@ -102,7 +102,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:transitionName="@string/transition_image"
+                        app:transitionName="@{article.url}"
                         tools:ignore="contentDescription"/>
 
                 <View
