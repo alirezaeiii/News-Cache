@@ -19,7 +19,7 @@ import com.sample.android.news.util.fromHtml
 
 class DetailFragment : Fragment() {
 
-    private var handler = Handler(Looper.getMainLooper())
+    private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val args = DetailFragmentArgs.fromBundle(arguments!!)
