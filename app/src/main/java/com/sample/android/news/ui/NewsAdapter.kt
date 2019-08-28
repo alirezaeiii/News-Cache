@@ -62,11 +62,11 @@ class NewsAdapter(val callback: OnClickListener) : ListAdapter<Article, NewsAdap
      */
     companion object DiffCallback : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem === newItem
+            return oldItem.url == newItem.url
         }
 
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem.url == newItem.url
+            return oldItem == newItem
         }
     }
 
