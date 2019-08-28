@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -18,7 +17,7 @@ import com.sample.android.news.util.setupActionBar
 import com.sample.android.news.viewmodels.NewsViewModel
 
 
-class NewsFragment : Fragment() {
+class NewsFragment : BaseFragment() {
 
     /**
      * One way to delay creation of the viewModel until an appropriate lifecycle method is to use
@@ -38,6 +37,8 @@ class NewsFragment : Fragment() {
      */
     private lateinit var viewModelAdapter: NewsAdapter
 
+    private lateinit var binding: FragmentNewsBinding
+
     /**
      * Called when the fragment's activity has been created and this
      * fragment's view hierarchy instantiated.  It can be used to do final
@@ -46,8 +47,16 @@ class NewsFragment : Fragment() {
      */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        var isFirstLoad = true
         viewModel.news.observe(viewLifecycleOwner, Observer<List<Article>> { articles ->
-            articles?.apply {
+            if(isFirstLoad) {
+                isFirstLoad = false
+            }else {
+                handler.postDelayed({
+                    binding.recyclerView.scrollToPosition(0)
+                }, 1000)
+            }
+            articles?.let {
                 viewModelAdapter.submitList(articles)
             }
         })
@@ -55,21 +64,20 @@ class NewsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val binding = FragmentNewsBinding.inflate(inflater, container, false).apply {
+        binding = FragmentNewsBinding.inflate(inflater, container, false).apply {
             setVariable(BR.vm, viewModel)
             // Set the lifecycleOwner so DataBinding can observe LiveData
             lifecycleOwner = viewLifecycleOwner
         }
 
         viewModelAdapter =
-            NewsAdapter(NewsAdapter.OnClickListener { article, imageView, titleTextView , descriptionTextView ->
+            NewsAdapter(NewsAdapter.OnClickListener { article, imageView, titleTextView, descriptionTextView ->
                 val extras = FragmentNavigatorExtras(
                     imageView to article.url,
                     titleTextView to article.title,
                     descriptionTextView to getString(R.string.transition_description, article.url)
                 )
                 findNavController().navigate(NewsFragmentDirections.actionNewsFragmentToDetailFragment(article), extras)
-
             })
 
         with(binding) {

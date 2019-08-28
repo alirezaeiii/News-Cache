@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
  */
 class NewsApplication : Application() {
 
-    val applicationScope = CoroutineScope(Dispatchers.Default)
+    private val applicationScope = CoroutineScope(Dispatchers.Default)
 
     /**
      * onCreate is called before the first screen is shown to the user.

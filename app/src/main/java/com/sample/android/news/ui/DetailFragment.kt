@@ -3,23 +3,18 @@ package com.sample.android.news.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.postDelayed
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import com.sample.android.news.R
 import com.sample.android.news.databinding.FragmentDetailBinding
 import com.sample.android.news.util.fromHtml
 
-class DetailFragment : Fragment() {
-
-    private val handler = Handler(Looper.getMainLooper())
+class DetailFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val args = DetailFragmentArgs.fromBundle(arguments!!)
