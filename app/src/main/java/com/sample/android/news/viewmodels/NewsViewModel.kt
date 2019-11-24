@@ -1,6 +1,9 @@
 package com.sample.android.news.viewmodels
 
 import android.app.Application
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import androidx.lifecycle.*
 import com.sample.android.news.Repository.ArticlesRepository
 import com.sample.android.news.database.getDatabase
@@ -44,8 +47,13 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
      * init{} is called immediately when this ViewModel is created.
      */
     init {
-        viewModelScope.launch {
-            articleRepository.refreshArticles()
+        val cm = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        val isConnected: Boolean = activeNetwork?.isConnected == true
+        if (isConnected) {
+            viewModelScope.launch {
+                articleRepository.refreshArticles()
+            }
         }
     }
 

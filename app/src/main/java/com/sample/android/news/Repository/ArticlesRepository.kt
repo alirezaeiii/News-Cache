@@ -33,12 +33,8 @@ class ArticlesRepository(private val database: NewsDatabase) {
      */
     suspend fun refreshArticles() {
         withContext(Dispatchers.IO) {
-            try {
-                val news = Network.news.getNews().await()
-                database.newsDao.insertAll(*news.asDatabaseModel())
-            } catch (exception: IOException) {
-                Timber.e(exception)
-            }
+            val news = Network.news.getNews().await()
+            database.newsDao.insertAll(*news.asDatabaseModel())
         }
     }
 }
