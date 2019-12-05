@@ -47,16 +47,8 @@ class NewsFragment : BaseFragment() {
      */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        var isFirstLoad = true
         viewModel.news.observe(viewLifecycleOwner, Observer<List<Article>> { articles ->
-            if(isFirstLoad) {
-                isFirstLoad = false
-            }else {
-                handler.postDelayed({
-                    binding.recyclerView.scrollToPosition(0)
-                }, 1000)
-            }
-            articles?.let {
+            articles.let {
                 viewModelAdapter.submitList(articles)
             }
         })
