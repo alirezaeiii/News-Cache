@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -17,7 +18,7 @@ import com.sample.android.news.util.setupActionBar
 import com.sample.android.news.viewmodels.NewsViewModel
 
 
-class NewsFragment : BaseFragment() {
+class NewsFragment : Fragment() {
 
     /**
      * One way to delay creation of the viewModel until an appropriate lifecycle method is to use
@@ -37,8 +38,6 @@ class NewsFragment : BaseFragment() {
      */
     private lateinit var viewModelAdapter: NewsAdapter
 
-    private lateinit var binding: FragmentNewsBinding
-
     /**
      * Called when the fragment's activity has been created and this
      * fragment's view hierarchy instantiated.  It can be used to do final
@@ -54,7 +53,7 @@ class NewsFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        binding = FragmentNewsBinding.inflate(inflater, container, false).apply {
+        val binding = FragmentNewsBinding.inflate(inflater, container, false).apply {
             setVariable(BR.vm, viewModel)
             // Set the lifecycleOwner so DataBinding can observe LiveData
             lifecycleOwner = viewLifecycleOwner
