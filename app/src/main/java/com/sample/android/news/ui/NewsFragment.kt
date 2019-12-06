@@ -48,9 +48,7 @@ class NewsFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.news.observe(viewLifecycleOwner, Observer<List<Article>> { articles ->
-            articles.let {
-                viewModelAdapter.submitList(articles)
-            }
+            viewModelAdapter.submitList(articles)
         })
     }
 
