@@ -1,5 +1,5 @@
 # News-Cache
-A sample to showcase Kotlin, MVVM, Navigation, Coroutines, Room, WorkManager, Retrofit 2 and DataBinding.
+A sample to showcase Kotlin, MVVM, Navigation, Coroutines, Room, WorkManager, Retrofit and DataBinding.
 
 ### Prerequisites
 
