@@ -5,7 +5,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import androidx.lifecycle.*
-import com.sample.android.news.ArticlesRepository
+import com.sample.android.news.repository.ArticlesRepository
 import com.sample.android.news.database.getDatabase
 import com.sample.android.news.domain.Article
 import kotlinx.coroutines.CoroutineScope

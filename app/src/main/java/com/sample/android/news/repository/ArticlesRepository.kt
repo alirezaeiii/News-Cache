@@ -1,4 +1,4 @@
-package com.sample.android.news
+package com.sample.android.news.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
