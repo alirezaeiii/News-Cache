@@ -1,4 +1,4 @@
-package com.sample.android.news.Repository
+package com.sample.android.news.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
@@ -9,8 +9,6 @@ import com.sample.android.news.network.Network
 import com.sample.android.news.network.asDatabaseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import timber.log.Timber
-import java.io.IOException
 
 class ArticlesRepository(private val database: NewsDatabase) {
 

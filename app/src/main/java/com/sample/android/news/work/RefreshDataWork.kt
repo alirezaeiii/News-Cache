@@ -3,7 +3,7 @@ package com.sample.android.news.work
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.sample.android.news.Repository.ArticlesRepository
+import com.sample.android.news.repository.ArticlesRepository
 import com.sample.android.news.database.getDatabase
 import retrofit2.HttpException
 
