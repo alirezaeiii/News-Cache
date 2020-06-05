@@ -36,10 +36,6 @@ class NewsApplication : Application(), Configuration.Provider {
         // Set up Timber
         Timber.plant(Timber.DebugTree())
 
-        delayedInit()
-    }
-
-    private fun delayedInit() {
         applicationScope.launch {
             setupRecurringWork()
         }
