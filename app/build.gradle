@@ -31,6 +31,14 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     dataBinding {
         enabled = true
     }
@@ -76,7 +84,7 @@ dependencies {
     implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
 
     // WorkManager
-    implementation "android.arch.work:work-runtime-ktx:$version_work"
+    implementation "androidx.work:work-runtime-ktx:$version_work"
 
     // Timber
     implementation "com.jakewharton.timber:timber:$version_timber"

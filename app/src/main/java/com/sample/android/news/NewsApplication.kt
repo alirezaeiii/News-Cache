@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.sample.android.news
 
 import android.app.Application
@@ -13,9 +15,14 @@ import java.util.concurrent.TimeUnit
 /**
  * Override application to setup background work via WorkManager
  */
-class NewsApplication : Application() {
+class NewsApplication : Application(), Configuration.Provider {
 
     private val applicationScope = CoroutineScope(Dispatchers.Default)
+
+    override fun getWorkManagerConfiguration() =
+        Configuration.Builder()
+            .setMinimumLoggingLevel(android.util.Log.DEBUG)
+            .build()
 
     /**
      * onCreate is called before the first screen is shown to the user.
@@ -49,12 +56,11 @@ class NewsApplication : Application() {
                 }
             }.build()
 
-        val repeatingRequest
-                = PeriodicWorkRequestBuilder<RefreshDataWorker>(1, TimeUnit.DAYS)
+        val repeatingRequest = PeriodicWorkRequestBuilder<RefreshDataWorker>(1, TimeUnit.DAYS)
             .setConstraints(constraints)
             .build()
 
-        WorkManager.getInstance().enqueueUniquePeriodicWork(
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
             RefreshDataWorker.WORK_NAME,
             ExistingPeriodicWorkPolicy.KEEP,
             repeatingRequest)
