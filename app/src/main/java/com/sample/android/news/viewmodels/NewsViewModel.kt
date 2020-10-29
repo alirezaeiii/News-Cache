@@ -8,6 +8,7 @@ import androidx.lifecycle.*
 import com.sample.android.news.repository.ArticlesRepository
 import com.sample.android.news.database.getDatabase
 import com.sample.android.news.domain.Article
+import com.sample.android.news.util.isNetworkAvailable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -48,10 +49,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
      * init{} is called immediately when this ViewModel is created.
      */
     init {
-        val cm = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
-        val isConnected: Boolean = activeNetwork?.isConnected == true
-        if (isConnected) {
+        if (application.isNetworkAvailable()) {
             viewModelScope.launch {
                 articleRepository.refreshArticles()
             }
