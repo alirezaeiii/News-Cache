@@ -34,7 +34,7 @@ class NewsApplication : Application(), Configuration.Provider {
         super.onCreate()
 
         // Set up Timber
-        Timber.plant(Timber.DebugTree())
+        if(BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
 
         applicationScope.launch {
             setupRecurringWork()
