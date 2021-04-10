@@ -20,7 +20,7 @@ news_api_key=YOUR_NEWS_API_KEY
    * [Navigation](https://developer.android.com/guide/navigation/) Android Jetpack's Navigation component helps you implement effective navigation.
    * [Room](https://developer.android.com/topic/libraries/architecture/room) is a library for data storage persistence which provides an abstraction layer over SQLite.
    * [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager/basics) allows you to schedule work to run one-time or repeatedly.
-* [Picasso](https://github.com/square/picasso) is A powerful image downloading and caching library for Android.
+* [Picasso](https://github.com/square/picasso) is a powerful image downloading and caching library for Android.
 * [Kotlin coroutines](https://developer.android.com/kotlin/coroutines) Executing code asynchronously.
 * [Retrofit](https://square.github.io/retrofit/) is a Type-safe HTTP client for Android, Java and Kotlin by Square.
 * [Moshi](https://github.com/square/moshi) is a modern JSON library for Android and Java. It makes it easy to parse JSON format data.
